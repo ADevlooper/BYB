@@ -26,9 +26,11 @@ function Shortmenu() {
     setActiveCategory(category);
   };
 
-  const filteredProducts = activeCategory === 'All'
+  const filteredProducts = (activeCategory === 'All'
     ? products
-    : products.filter(product => product.tags.includes(activeCategory));
+    : products.filter(product => product.tags.includes(activeCategory)))
+    .sort((a, b) => b.discountPercentage - a.discountPercentage)
+    .slice(0, 3);
 
   const calculateOriginalPrice = (price, discountPercentage) => {
     return (price / (1 - discountPercentage / 100)).toFixed(2);
@@ -40,7 +42,7 @@ function Shortmenu() {
 
   return (
     <div className="p-5 font-sans mx-4 ">
-      <h1 className="text-left text-3xl md:mt-12 mt-7 md:mb-12 mb-7">Fresh bakes. Fast delivery. Pure happiness!</h1>
+      <h1 className="text-left text-3xl md:mt-12 mt-7 md:mb-12 mb-7">Fast delivery. Pure happiness!</h1>
       <div className="flex flex-col md:flex-row justify-between items-start">
         <div className="flex-1 md:mr-5 gap-7">
           <ul className="list-none p-0 md:mt-10 flex flex-wrap md:block gap-4 md:gap-0">
