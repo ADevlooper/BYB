@@ -55,7 +55,7 @@ function DealsForYou() {
 
 
   return (
-    <div className="container mt-6 px-8 py-8">
+    <div className="container mt-6 px-4 md:px-8 py-8">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-3xl font-bold text-left">Deals for you</h2>
         <Link to="/products" className="bg-transparent text-red-800 px-4 py-2 rounded-2xl border hover:bg-red-800 hover:text-white transition-colors">
@@ -64,7 +64,7 @@ function DealsForYou() {
       </div>
       <div className="flex gap-4 overflow-x-auto pb-4" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
         {products.map((product) => (
-          <div key={product.id} className="flex-shrink-0 w-64 bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+          <div key={product.id} className="shrink-0 w-64 bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
             <Link to={`/product/${product.id}`} className="block relative">
               <div className="h-48 bg-gray-200 flex items-center justify-center">
                 <img

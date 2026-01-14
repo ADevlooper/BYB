@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../redux/cartSlice';
 
 function Shortmenu() {
+  const dispatch = useDispatch();
   const [activeCategory, setActiveCategory] = useState('beverages');
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState(['beverages', 'desserts', 'fruits', 'condiments']);
@@ -40,8 +43,12 @@ function Shortmenu() {
     return <div className="text-center p-10">Loading menu...</div>;
   }
 
+  const handleAddToCart = (product) => {
+    dispatch(addToCart({ ...product, quantity: 1 }));
+  };
+
   return (
-    <div className="p-5 font-sans mx-4 ">
+    <div className="p-3 md:p-5 font-sans mx-2 md:mx-4 ">
       <h1 className="text-left text-3xl md:mt-12 mt-7 md:mb-12 mb-7">Fast delivery. Pure happiness!</h1>
       <div className="flex flex-col md:flex-row justify-between items-start">
         <div className="flex-1 md:mr-5 gap-7">
@@ -86,7 +93,9 @@ function Shortmenu() {
                   </span>
                 </div>
                 <div className="flex gap-2 mt-auto">
-                  <button className="flex-1 border-2 border-red-800 text-red-800 px-4 py-2 rounded-md hover:bg-red-800 hover:text-white transition-colors text-center flex items-center justify-center gap-2 text-sm">
+                  <button
+                    onClick={() => handleAddToCart(product)}
+                    className="flex-1 border-2 border-red-800 text-red-800 px-2 md:px-4 py-2 rounded-md hover:bg-red-800 hover:text-white transition-colors text-center flex items-center justify-center gap-2 text-sm whitespace-nowrap">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
